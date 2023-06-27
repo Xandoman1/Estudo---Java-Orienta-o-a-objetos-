@@ -1,11 +1,11 @@
 package JavaOrientaçãoAObjetos;
 
-public class Conta extends Cliente {
+public abstract class Conta extends Cliente { //não posso instanciar objeto dessa classe
 	
 	private Cliente titular;
 	private int agencia;
 	private int numero;
-	private double saldo;
+	protected double saldo;
 	private static int total; //para o total ser somado em relação a classe, e não somente ao objeto, senão fica tudo 1
 	//STATIC indica que é DA CLASSE e não só do objeto, nem podemos usar THIS
 	
@@ -26,17 +26,16 @@ public class Conta extends Cliente {
 		this.saldo += valor;
 	}
 	
-	public boolean sacar(double valor){
+	public abstract double sacar(double valor);
+	
+	public boolean verificaSaque(double valor) {
 		if (this.saldo >= valor) {
-			this.saldo -= valor;
-			System.out.println("Saque feito com sucesso");
 			return true;
-			
 		} else {
-			System.out.println("Saldo insuficiente");
 			return false;
 		}
 	}
+
 	
 	public boolean transfere(double valor, Conta destino){
 		if (this.saldo >= valor) {

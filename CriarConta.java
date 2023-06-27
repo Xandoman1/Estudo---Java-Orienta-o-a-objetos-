@@ -4,12 +4,16 @@ public class CriarConta {
 
 	public static void main(String[] args) {
 		
-		Conta primeiraConta = new Conta(6476, 68788);
-		Conta segundaConta = new Conta(4787, 9001);
-		Conta terceiraConta = new Conta(6667, 78574);
+		ContaCorrente primeiraConta = new ContaCorrente(6476, 68788);
+		Conta segundaConta = new Poupança(4787, 9001);
+		ContaCorrente terceiraConta = new ContaCorrente(6667, 78574);
 		Cliente xandao = new Cliente();
 		Cliente xandao2 = new Cliente();
 		Cliente xandao3 = new Cliente();
+		Imposto i = new Imposto();
+		i.registra(terceiraConta);
+		
+		
 		
 		primeiraConta.setTitular(xandao);
 		segundaConta.setTitular(xandao2);
@@ -22,8 +26,8 @@ public class CriarConta {
 		String nome = segundaConta.getTitular().getNome();
 		System.out.println(nome);
 		
-		primeiraConta.setNumero(678);
 		primeiraConta.deposita(400);
+		primeiraConta.sacar(50);
 		System.out.println("Saldo: " + primeiraConta.getSaldo());
 		System.out.println("Conta Nº " + primeiraConta.getNumero());
 		
@@ -36,6 +40,7 @@ public class CriarConta {
 			System.out.println("Saldo insuficiente");
 		}
 		
+		System.out.println(primeiraConta.getValorImposto());
 		
 		
 	}
